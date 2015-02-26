@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 
@@ -9,16 +10,34 @@ public class Deck {
 	private String[] types;
 	private String[] values;
 			
-	private ArrayList<Card> cards = new ArrayList<Card>();
+	private ArrayList<Card> cards;
 	private int num_cards;
 	
 	Deck(String file) throws FileNotFoundException, ImproperDeckFormatException{
 		File f = new File(file);
 		load_deck(f);
+		build_deck();
+	}
+	
+	public Card draw(){
+		if(num_cards <= 0 || cards == null) return null;
+		Card ret = cards.get(0);
+		cards.add(cards.remove(0));
+		num_cards--;
+		return ret;
+	}
+	
+	
+	public Card[] draw(int num_of_cards){
+		//TODO: Decide whether to return null if < num_of_cards or return an incomplete array
+		//		e.g. draw(5) with num_cards = 4. Returns an array of 4 cards or null. 
+		return null;
 	}
 	
 	public void shuffle(){
-		
+		//TODO: Should this be modified to deal with decks that have had cards drawn from them. 
+		//		Meaning you call shuffle after someone has drawn one or many cards.
+		Collections.shuffle(cards);
 		
 	}
 	
@@ -68,10 +87,13 @@ public class Deck {
 					+ "Please check your types and values");
 			return;
 		}
-		for(int i = 0; i < types.length; i++){
-			for(int k = 0; k < values.length; k++){
-				cards.add(new Card(values[k], types[i]));
-			}
+		if(cards == null){
+			cards = new ArrayList<Card>();
+			 for(int i = 0; i < types.length; i++){
+				 for(int k = 0; k < values.length; k++){
+					 cards.add(new Card(values[k], types[i]));
+				 }
+			 }
 		}
 		
 			
@@ -95,5 +117,7 @@ public class Deck {
 			if(i == values.length -1) break;
 			System.out.printf(" : ");
 		}
+		System.out.println();
+		this.num_cards = values.length * types.length;
 	}
 }
