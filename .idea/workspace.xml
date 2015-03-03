@@ -12,15 +12,15 @@
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/game_layout.xml">
         <config>
           <state>Landscape</state>
-          <theme>@style/AppTheme</theme>
+          <theme>@android:style/Theme.Material.Light</theme>
         </config>
       </layout>
     </layouts>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f0c760d-3717-4361-a4c1-a98c9c374e98" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/game_layout.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/model_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/model_data.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UI/Sprites/card_fronts.psd" afterPath="$PROJECT_DIR$/UI/Sprites/card_fronts.psd" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UI/Sprites/jacktemp.psd" afterPath="$PROJECT_DIR$/UI/Sprites/jacktemp.psd" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CS307.iws" />
