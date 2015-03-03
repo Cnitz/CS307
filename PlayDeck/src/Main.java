@@ -9,9 +9,11 @@ public class Main {
 		Deck d = new Deck("Basic Deck");
 		d.print_suits_and_types();
 		d.shuffle();
-		for(int i = 0; i < 53; i++){
-		System.out.println(d.draw().view_card());
-
+	
+		d.factory_reset();
+		for(int i = 0; i < 52; i++){
+			if(d.curr_size() != 0)
+			d.draw(578);
 		}
 		
 	}

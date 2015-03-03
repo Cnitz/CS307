@@ -11,34 +11,39 @@ public class Deck {
 	private String[] values;
 			
 	private ArrayList<Card> cards;
-	private int num_cards;
+	private ArrayList<Card> removed;
 	
+	/*
+	 * Basic constructor that takes in the string of a file path leading to the deck file.
+	 * Parses the information from the file and stores it in the deck class and 
+	 * builds the deck based on that information.
+	 */
 	Deck(String file) throws FileNotFoundException, ImproperDeckFormatException{
 		File f = new File(file);
 		load_deck(f);
 		build_deck();
+		removed = new ArrayList<Card>();
 	}
 	
+	//TODO: devise a system for when someone draws a card from a deck that has no cards in it.
 	public Card draw(){
-		if(num_cards <= 0 || cards == null) return null;
+		if(curr_size() <= 0 || cards == null) return null;
 		Card ret = cards.get(0);
-		cards.add(cards.remove(0));
-		num_cards--;
+		removed.add(cards.remove(0));
 		return ret;
 	}
-	
-	
+		
 	public Card[] draw(int num_of_cards){
-		//TODO: Decide whether to return null if < num_of_cards or return an incomplete array
-		//		e.g. draw(5) with num_cards = 4. Returns an array of 4 cards or null. 
-		return null;
+		Card[] c = new Card[num_of_cards];
+		for(int i = 0; i < num_of_cards; i++){
+			if(curr_size() <= 0) break;
+			c[i] = draw();
+		}
+		return c;
 	}
 	
 	public void shuffle(){
-		//TODO: Should this be modified to deal with decks that have had cards drawn from them. 
-		//		Meaning you call shuffle after someone has drawn one or many cards.
-		Collections.shuffle(cards);
-		
+		Collections.shuffle(cards);		
 	}
 	
 	/*
@@ -76,11 +81,15 @@ public class Deck {
 		return;
 		
 	}
-	
-	public void add_card_to_deck(){
-		//TODO: decide whether to use arrays or Linked Lists
-	}
-	
+		
+	/*
+	 * Builds a deck from the information stored in types and values. 
+	 * It assign each type to each value one. 
+	 * 	- e.g. if there are 4 types and 13 values there will be 52 cards and each value will have 4 different 
+	 * 	 types and each type will have 13 values.
+	 * Can only build a deck once per deck.
+	 * Sets the num_cards (number of cards in the Deck) to types*values.
+	 */
 	public void build_deck(){
 		if(types == null || values == null){
 			System.out.println("There is not enough information to build a deck.\n"
@@ -100,6 +109,42 @@ public class Deck {
 		
 	}
 	
+	public int curr_size(){
+		if(cards == null) return -1;
+		return cards.size();
+	}
+	
+	/*
+	 * Resets the deck to a "pre-drawn" state
+	 * Restores all cards in removed to cards and shuffles the deck.
+	 */
+	public void reset(){
+		while (!removed.isEmpty()){
+			cards.add(removed.remove(0));
+		}
+		shuffle();
+	}
+	
+	/*
+	 * Resets the deck to its initial "new-deck" order
+	 */
+	public void factory_reset(){
+		cards.clear();
+		removed.clear();
+		 for(int i = 0; i < types.length; i++){
+			 for(int k = 0; k < values.length; k++){
+				 cards.add(new Card(values[k], types[i]));
+			 }
+		 }
+	}
+	
+	public void add_card_to_deck(){
+		//TODO: implement or decide to implement
+	}
+
+	
+	//~~~~~~~~~~~~~~~~~~~~Testing Functions~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
 	/*
 	 * Prints out a list of the types and values for testing purposes
 	 */
@@ -118,6 +163,8 @@ public class Deck {
 			System.out.printf(" : ");
 		}
 		System.out.println();
-		this.num_cards = values.length * types.length;
 	}
+	
+	//~~~~~~~~~~~~~~~~End Testing Functions~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
 }
