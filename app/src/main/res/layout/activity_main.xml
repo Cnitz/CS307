@@ -1,4 +1,61 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:id="@+id/container"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    tools:context=".MainActivity" tools:ignore="MergeRootFrame" />
+    tools:context=".MainActivity" tools:ignore="MergeRootFrame"
+    android:screenOrientation="sensorLandscape"
+    android:background="#ff1dff41">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:background="@drawable/ideaformainscreen"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Game"
+        android:id="@+id/createGameButton"
+        android:onClick="openGamePage"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Find Game"
+        android:onClick="findGamePage"
+        android:id="@+id/findGameButton"
+        android:layout_below="@+id/createGameButton"
+        android:layout_alignRight="@+id/createGameButton"
+        android:layout_alignEnd="@+id/createGameButton"
+        android:layout_alignLeft="@+id/createGameButton"
+        android:layout_alignStart="@+id/createGameButton" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="PlayDeck"
+        android:id="@+id/mainTitle"
+        android:layout_marginTop="54dp"
+        android:textSize="50dp"
+        android:layout_alignParentTop="true"
+
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="openFeedBackPage"
+        android:id="@+id/openSettings"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/settings_button"
+        android:clickable="true" />
+
+</RelativeLayout>

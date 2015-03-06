@@ -2,7 +2,10 @@
 <resources>
 
     <string name="app_name">PlayDeck</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world"></string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_feed_back_page">feedBackPage</string>
+    <string name="title_activity_find_game_page">findGamePage</string>
+    <string name="title_activity_game_page">gamePage</string>
 
 </resources>

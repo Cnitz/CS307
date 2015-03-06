@@ -6,9 +6,11 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.app.AlertDialog;
 import android.os.Build;
 
 
@@ -18,12 +20,15 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
     }
+
 
 
     @Override
@@ -51,7 +56,7 @@ public class MainActivity extends ActionBarActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
+    public static class PlaceholderFragment extends Fragment implements View.OnClickListener {
 
         public PlaceholderFragment() {
         }
@@ -62,5 +67,35 @@ public class MainActivity extends ActionBarActivity {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             return rootView;
         }
+        @Override
+        public void onClick(View v){
+            switch(v.getId()){
+
+                case R.id.findGameButton:
+                    System.out.println("Clicked find game button");
+
+                    break;
+                case R.id.createGameButton:
+                    System.out.println("Clicked create game button");
+                    break;
+            }
+
+        }
+    }
+    public void openFeedBackPage(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, feedBackPage.class);
+        startActivity(intent);
+    }
+    public void findGamePage(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, findGamePage.class);
+        startActivity(intent);
+    }
+    public void openGamePage(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, gamePage.class);
+        intent.putExtra("isHost", true);
+        startActivity(intent);
     }
 }
