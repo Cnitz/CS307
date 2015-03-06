@@ -87,4 +87,9 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(MainActivity.this, feedBackPage.class);
         startActivity(intent);
     }
+    public void findGamePage(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, findGamePage.class);
+        startActivity(intent);
+    }
 }

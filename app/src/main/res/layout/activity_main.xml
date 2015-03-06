@@ -26,6 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Find Game"
+        android:onClick="findGamePage"
         android:id="@+id/findGameButton"
         android:layout_below="@+id/createGameButton"
         android:layout_alignRight="@+id/createGameButton"

@@ -21,7 +21,14 @@
             android:name=".feedBackPage"
             android:label="@string/title_activity_feed_back_page" >
         </activity>
+        <activity
+            android:name=".findGamePage"
+            android:label="@string/title_activity_find_game_page" >
+        </activity>
+        <activity
+            android:name=".gamePage"
+            android:label="@string/title_activity_game_page" >
+        </activity>
     </application>
 
 </manifest>
- 
