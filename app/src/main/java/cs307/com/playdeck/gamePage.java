@@ -9,11 +9,22 @@ import android.view.View;
 
 
 public class gamePage extends ActionBarActivity {
+    GameClient GClient;
+    GameServer GServer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_page);
+        boolean isHost = getIntent().getBooleanExtra("isHost",false);
+        if(isHost){
+            GClient = new GameClient(true);
+            try {
+                GServer = new GameServer(true,GClient);
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
 

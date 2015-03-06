@@ -6,14 +6,30 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
+import com.esotericsoftware.kryonet.Server;
+import com.esotericsoftware.kryonet.Client;
+import com.esotericsoftware.kryonet.Listener;
+import com.esotericsoftware.kryonet.Connection;
+import java.net.InetAddress;
 
 public class findGamePage extends ActionBarActivity {
 
+     GameClient GClient;
+    static int udpPort = 27960;
+    static int tcpPort = 27960;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_game_page);
+        GClient = new GameClient(false);
+
+        new Thread(new Runnable() {
+            public void run() {
+                InetAddress address = GClient.getClient().discoverHost(udpPort, 5000);
+                System.out.println(address);
+            }
+        }).start();
+
     }
 
 

@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:text="Create Game"
         android:id="@+id/createGameButton"
+        android:onClick="openGamePage"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
