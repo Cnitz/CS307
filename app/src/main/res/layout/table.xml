@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/"
+    android:background="@drawable/back_table">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/settingsButton"
+        android:layout_marginBottom="36dp"
+        android:src="@drawable/button_menu"
+        android:background="#00ffffff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/horizontalScrollView"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/settingsButton">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton"
+            android:background="@drawable/card"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/settingsButton"
+            android:layout_toEndOf="@+id/settingsButton"
+            android:layout_marginLeft="22dp"
+            android:layout_marginStart="22dp" />
+    </HorizontalScrollView>
+
+</RelativeLayout>
