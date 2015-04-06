@@ -55,6 +55,10 @@ public class Player {
 
     public void play_card(Card c, PlayArea t)
     {
+        if (!hand.contains(c))
+        {
+            System.out.println("Card does not exist in hand");
+        }
         t.get_played().add(c);
         this.remove_card_from_hand(c);
         //Sync network
