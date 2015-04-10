@@ -14,25 +14,25 @@ import java.io.ObjectOutputStream;
  */
 public class Rules {
 
-    //private ArrayList<Cards> dontInclude;    CARDS NOT IMPLEMENTED YET
     private boolean canStackPlayedCards;
     private boolean rotateDealers;
     private boolean discardPileExists;
     private boolean reshuffleAfterTurn;
     private int maxCardsHand;
-    //Private Deck deck;                       DECK NOT IMPLEMENTED YET
+    private Deck deck;
     private boolean mainPileFacingUp;
     private boolean canTradeWithOthers;
     private boolean userCardsVisible;
 
     public Rules(boolean canStackPlayedCards, boolean rotateDealers, boolean discardPileExists,
-                 boolean reshuffleAfterTurn, int maxCardsHand, boolean mainPileFacingUp,
+                 boolean reshuffleAfterTurn, int maxCardsHand, Deck deck, boolean mainPileFacingUp,
                  boolean canTradeWithOthers, boolean userCardsVisible) {
         this.canStackPlayedCards = canStackPlayedCards;
         this.rotateDealers = rotateDealers;
         this.discardPileExists = discardPileExists;
         this.reshuffleAfterTurn = reshuffleAfterTurn;
         this.maxCardsHand = maxCardsHand;
+        this.deck = deck;
         this.mainPileFacingUp = mainPileFacingUp;
         this.canTradeWithOthers = canTradeWithOthers;
         this.userCardsVisible = userCardsVisible;
@@ -60,6 +60,10 @@ public class Rules {
 
     public int getMaxCardsHand() {
         return maxCardsHand;
+    }
+
+    public Deck getDeck() {
+        return deck;
     }
 
     public boolean isMainPileFacingUp() {

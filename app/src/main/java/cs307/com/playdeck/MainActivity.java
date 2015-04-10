@@ -1,17 +1,14 @@
 package cs307.com.playdeck;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.app.AlertDialog;
-import android.os.Build;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -94,7 +91,7 @@ public class MainActivity extends ActionBarActivity {
     }
     public void openGamePage(View view)
     {
-        Intent intent = new Intent(MainActivity.this, gamePage.class);
+        Intent intent = new Intent(MainActivity.this, ChooseGame.class);
         intent.putExtra("isHost", true);
         startActivity(intent);
     }

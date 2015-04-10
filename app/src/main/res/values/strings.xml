@@ -7,5 +7,7 @@
     <string name="title_activity_feed_back_page">feedBackPage</string>
     <string name="title_activity_find_game_page">findGamePage</string>
     <string name="title_activity_game_page">gamePage</string>
+    <string name="title_activity_choose_game">ChooseGame</string>
+    <string name="title_activity_create_game">CreateGame</string>
 
 </resources>

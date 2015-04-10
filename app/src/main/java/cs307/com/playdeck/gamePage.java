@@ -1,22 +1,30 @@
 package cs307.com.playdeck;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.LinearLayout;
 
+import java.util.ArrayList;
 
 public class gamePage extends ActionBarActivity {
     GameClient GClient;
     GameServer GServer;
+
+    Deck mainDeck;
+    ArrayList<Card> hand;
+    ArrayList<Card> played;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_page);
         boolean isHost = getIntent().getBooleanExtra("isHost",false);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         if(isHost){
             GClient = new GameClient(true);
             try {
@@ -43,7 +51,7 @@ public class gamePage extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.game_menu) {
             return true;
         }
 
@@ -52,5 +60,39 @@ public class gamePage extends ActionBarActivity {
     public void exitGame(View view){
         Intent intent = new Intent(gamePage.this, MainActivity.class);
         startActivity(intent);
+    }
+
+    public void menu_deck(View view)
+    {
+
+    }
+    public void show_menu(View view)
+    {
+
+    }
+    public void card_menu(View view)
+    {
+
+    }
+    public void chips_menu(View view)
+    {
+
+    }
+    public void sync_played()
+    {
+        for(Card c : played)
+        {
+            add_to_playedview(c.createButton(this));
+        }
+    }
+    public void add_to_handview(View view)
+    {
+        LinearLayout played = (LinearLayout)findViewById(R.id.hand_layout);
+        played.addView(view);
+    }
+    public void add_to_playedview(View view)
+    {
+        LinearLayout played = (LinearLayout)findViewById(R.id.played_layout);
+        played.addView(view);
     }
 }
