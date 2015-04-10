@@ -6,8 +6,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 public class ChooseGame extends ActionBarActivity {
@@ -21,6 +23,19 @@ public class ChooseGame extends ActionBarActivity {
         final ArrayAdapter adapter = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_1, Rules.getListGames(this));
         listview.setAdapter(adapter);
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+
+                String gameName = ((TextView)view).getText().toString();
+                Intent intent = new Intent(ChooseGame.this, CreateGameLobby.class);
+                intent.putExtra("game_name", gameName);
+                startActivity(intent);
+
+            }
+        });
 
 
 

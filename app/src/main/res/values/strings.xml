@@ -9,5 +9,6 @@
     <string name="title_activity_game_page">gamePage</string>
     <string name="title_activity_choose_game">ChooseGame</string>
     <string name="title_activity_create_game">CreateGame</string>
+    <string name="title_activity_create_game_lobby">CreateGameLobby</string>
 
 </resources>
