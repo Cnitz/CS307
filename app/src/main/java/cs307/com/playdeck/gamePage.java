@@ -3,17 +3,19 @@ package cs307.com.playdeck;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
 public class gamePage extends ActionBarActivity {
     GameClient GClient;
     GameServer GServer;
+    public static String PACKAGE_NAME;
 
     Deck mainDeck;
     ArrayList<Card> hand;
@@ -21,10 +23,11 @@ public class gamePage extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+        PACKAGE_NAME = getApplicationContext().getPackageName();
         setContentView(R.layout.activity_game_page);
         boolean isHost = getIntent().getBooleanExtra("isHost",false);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         if(isHost){
             GClient = new GameClient(true);
             try {
@@ -33,6 +36,26 @@ public class gamePage extends ActionBarActivity {
                 System.out.println(e.getMessage());
             }
         }
+
+        RecyclerView recList = (RecyclerView) findViewById(R.id.cardsInHand);
+        recList.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recList.setLayoutManager(llm);
+
+        // TODO test card list
+        ArrayList<Card> cards = new ArrayList<Card>();
+        cards.add(new Card("10", "Clubs"));
+        cards.add(new Card("10", "Clubs"));
+        cards.add(new Card("10", "Clubs"));
+        cards.add(new Card("10", "Clubs"));
+        cards.add(new Card("10", "Clubs"));
+        cards.add(new Card("10", "Clubs"));
+        cards.add(new Card("10", "Clubs"));
+
+
+        CardAdapter ca = new CardAdapter(cards);
+        recList.setAdapter(ca);
     }
 
 
@@ -87,12 +110,15 @@ public class gamePage extends ActionBarActivity {
     }
     public void add_to_handview(View view)
     {
-        LinearLayout played = (LinearLayout)findViewById(R.id.hand_layout);
-        played.addView(view);
+        //LinearLayout played = (LinearLayout)findViewById(R.id.hand_layout);
+        //played.addView(view);
     }
     public void add_to_playedview(View view)
     {
-        LinearLayout played = (LinearLayout)findViewById(R.id.played_layout);
-        played.addView(view);
+        //LinearLayout played = (LinearLayout)findViewById(R.id.played_layout);
+        //played.addView(view);
     }
+
+
+
 }
