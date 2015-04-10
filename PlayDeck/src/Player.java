@@ -8,7 +8,8 @@ public class Player {
 	
 	Player(String name, int playerid){
 		this.name = name;
-		this.playerid = playerid;		
+		this.playerid = playerid;	
+		hand = new ArrayList<Card>();
 	}
 	
 	public void draw(){
@@ -41,6 +42,14 @@ public class Player {
 	public void set_id(int id){
 		if(id < 0) return;
 		this.playerid = id;
+	}
+	
+	public void view_hand(){
+		System.out.printf("Player: %s\n", this.name);
+		for(int i = 0; i < hand.size(); i++){
+			System.out.println(hand.get(i).view_card());
+		}
+		System.out.println("~~~~~~~~~");
 	}
 
 }

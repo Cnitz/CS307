@@ -11,11 +11,15 @@ public class Rules {
 	private int discard_amount;
 	private boolean AceHigh = true;
 	private int trump_offset;
+	private int lead_suit_offset;
+	private String lead_suit;
+	private boolean isLead = false;
 	
 	
 	Rules(Deck deck){		
 		rank = new ArrayList<String>(Arrays.asList(deck.get_values()));
 		set_trump_offset();
+		set_lead_suit_offset();
 	}
 	
 	public void set_hand_size(int size){
@@ -45,15 +49,23 @@ public class Rules {
 	}
 	
 	public void set_trump_offset(){
-		this.trump_offset = rank.size();
+		this.trump_offset = 2*rank.size();
 	}
 	
-	
+	public void set_lead_suit_offset(){
+		this.lead_suit_offset = rank.size();
+	}
 	
 	public void set_trump(String trump){
 		this.trump = trump;
 		isTrump = true;
 	}
+	
+	public void set_lead_suit(String suit){
+		this.lead_suit = suit;
+		this.isLead = true;
+	}
+	
 	
 	public String get_trump(){
 		return trump != null ? trump : "No Trump";
@@ -68,8 +80,20 @@ public class Rules {
 		return rank.indexOf(value);
 	}
 	
+	public String get_lead_suit(){
+		return lead_suit;
+	}
+	
+	public boolean isLead(String suit){
+		if(get_lead_suit().equals(suit)) return true;
+		return false;
+	}
+	
 	public int evaluate(Card c){
 		int value = 0;	
+		
+		if(isLead && isLead(c.get_type())) value += lead_suit_offset;
+		
 		if(isTrump && isTrump(c.get_type())) value += trump_offset;
 		value += get_rank(c.get_value());
 		return value;

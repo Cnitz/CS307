@@ -130,6 +130,11 @@ public class Deck {
 		shuffle();
 	}
 	
+	public boolean isEmpty(){
+		if(cards.size() == 0) return true;
+		else return false;
+	}
+	
 	/*
 	 * Resets the deck to its initial "new-deck" order
 	 */
