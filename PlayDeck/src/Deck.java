@@ -10,6 +10,7 @@ public class Deck {
 	private String[] types;
 	private String[] values;
 			
+	
 	private ArrayList<Card> cards;
 	private ArrayList<Card> removed;
 	
@@ -33,6 +34,10 @@ public class Deck {
 		return ret;
 	}
 		
+	public String[] get_values(){
+		return values;
+	}
+	
 	public Card[] draw(int num_of_cards){
 		Card[] c = new Card[num_of_cards];
 		for(int i = 0; i < num_of_cards; i++){
