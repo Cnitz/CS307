@@ -46,16 +46,29 @@ public class gamePage extends ActionBarActivity {
         // TODO test card list
         ArrayList<Card> cards = new ArrayList<Card>();
         cards.add(new Card("10", "Clubs"));
-        cards.add(new Card("10", "Clubs"));
-        cards.add(new Card("10", "Clubs"));
-        cards.add(new Card("10", "Clubs"));
-        cards.add(new Card("10", "Clubs"));
-        cards.add(new Card("10", "Clubs"));
-        cards.add(new Card("10", "Clubs"));
+        cards.add(new Card("9", "Clubs"));
+        cards.add(new Card("8", "Clubs"));
+        cards.add(new Card("7", "Clubs"));
+        cards.add(new Card("6", "Clubs"));
+        cards.add(new Card("5", "Clubs"));
+        cards.add(new Card("4", "Clubs"));
+
 
 
         CardAdapter ca = new CardAdapter(cards);
         recList.setAdapter(ca);
+
+        // TODO  these are the cards at the top left
+        RecyclerView recList2 = (RecyclerView) findViewById(R.id.cardsInPlay);
+        recList2.setHasFixedSize(true);
+        LinearLayoutManager llm2 = new LinearLayoutManager(this);
+        llm2.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recList2.setLayoutManager(llm2);
+        CardAdapter ca2 = new CardAdapter(cards);
+        recList2.setAdapter(ca2);
+
+
+
     }
 
 

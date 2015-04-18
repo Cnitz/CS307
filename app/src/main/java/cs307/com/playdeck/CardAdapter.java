@@ -1,12 +1,13 @@
 package cs307.com.playdeck;
 
-import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 /**
@@ -48,11 +49,17 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             value = tempValue;
         }
         type = type.concat(value);
-        // TODO fix cards being updated
-        int resource = R.drawable.c10;
-        int getResource = Resources.getSystem().getIdentifier(type, "drawable", gamePage.PACKAGE_NAME);
-        cardViewHolder.card.setImageResource(
-                Resources.getSystem().getIdentifier(type, "drawable", gamePage.PACKAGE_NAME));
+        int drawableId = 0;
+        try {
+            Class res = R.drawable.class;
+            Field field = res.getField(type);
+            drawableId = field.getInt(null);
+        }
+        catch (Exception e) {
+            Log.e("MyTag", "Failure to get drawable id.", e);
+        }
+
+        cardViewHolder.card.setImageResource(drawableId);
     }
 
     @Override
@@ -71,11 +78,20 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
     public static class CardViewHolder extends RecyclerView.ViewHolder {
 
-        protected ImageView card;
+        protected ImageButton card;
+        private boolean isClicked = false;
 
         public CardViewHolder(View v) {
             super(v);
-            card =  (ImageView) v.findViewById(R.id.card_image);
+            card =  (ImageButton) v.findViewById(R.id.card_image);
+
+            card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //TODO add ability to place cards or remove
+
+                }
+            });
         }
     }
 }

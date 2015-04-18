@@ -40,14 +40,29 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/cardsInHand"
-        android:layout_width="250dip"
-        android:layout_height="100dip"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
 
         tools:context=".MainActivity"
         android:layout_alignTop="@+id/game_chips"
         android:layout_toRightOf="@+id/game_menu"
         android:layout_toLeftOf="@+id/game_chips"
         android:layout_toStartOf="@+id/game_chips" />
+
+    <android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/cardsInPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+
+        tools:context=".MainActivity"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/game_deck"
+        android:layout_toLeftOf="@+id/game_deck"
+        android:layout_toStartOf="@+id/game_deck" />
 
 
 
