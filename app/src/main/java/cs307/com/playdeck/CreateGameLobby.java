@@ -1,15 +1,25 @@
 package cs307.com.playdeck;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.net.wifi.p2p.WifiP2pManager;
+import android.net.wifi.p2p.WifiP2pManager.Channel;
 
 
 public class CreateGameLobby extends ActionBarActivity {
+
+    WifiP2pManager mManager;
+    WifiP2pManager.Channel mChannel;
+    GameBroadcastReceiver mReceiver;
+    IntentFilter mIntentFilter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +33,35 @@ public class CreateGameLobby extends ActionBarActivity {
 
         textView = (TextView)findViewById(R.id.game_name);
         textView.setText(game_name);
+
+        mIntentFilter = new IntentFilter();
+        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
+        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
+        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
+        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+
+        mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
+        mChannel = mManager.initialize(this, getMainLooper(), null);
+        mReceiver = new GameBroadcastReceiver(mManager, mChannel, this);
+
+        mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
+
+            @Override
+            public void onSuccess() {
+                // Code for when the discovery initiation is successful goes here.
+                // No services have actually been discovered yet, so this method
+                // can often be left blank.  Code for peer discovery goes in the
+                // onReceive method, detailed below.
+            }
+
+            @Override
+            public void onFailure(int reasonCode) {
+                // Code for when the discovery initiation fails goes here.
+                // Alert the user that something went wrong.
+            }
+        });
+
+
     }
 
 
@@ -63,5 +102,15 @@ public class CreateGameLobby extends ActionBarActivity {
          */
     }
 
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(mReceiver, mIntentFilter);
+    }
+    /* unregister the broadcast receiver */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(mReceiver);
+    }
 
 }
