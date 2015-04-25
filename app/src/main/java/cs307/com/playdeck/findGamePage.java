@@ -17,7 +17,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class findGamePage extends ActionBarActivity {
+public class findGamePage extends ActionBarActivity{
 
     WifiP2pManager mManager;
     WifiP2pManager.Channel mChannel;
