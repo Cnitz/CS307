@@ -17,19 +17,22 @@ public class GameBroadcastReceiver extends BroadcastReceiver {
     private Channel mChannel;
     private CreateGameLobby g;
     private findGamePage f;
+    private PeerListListener p;
 
-    GameBroadcastReceiver(WifiP2pManager manager, Channel channel, CreateGameLobby game){
+    GameBroadcastReceiver(WifiP2pManager manager, Channel channel, CreateGameLobby game, PeerListListener list){
         super();
         this.mManager = manager;
         this.mChannel = channel;
         this.g = game;
+        this.p = list;
     }
 
-    GameBroadcastReceiver(WifiP2pManager manager, Channel channel, findGamePage game){
+    GameBroadcastReceiver(WifiP2pManager manager, Channel channel, findGamePage game,PeerListListener list){
         super();
         this.mManager = manager;
         this.mChannel = channel;
         this.f = game;
+        this.p = list;
     }
 
     @Override
@@ -46,7 +49,7 @@ public class GameBroadcastReceiver extends BroadcastReceiver {
         } else if (WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION.equals(action)) {
 
             if (mManager != null) {
-                //mManager.requestPeers(mChannel, peerListListener);
+                mManager.requestPeers(mChannel, this.p);
             }
             //Log.d(WiFiDirectActivity.TAG, "P2P peers changed");
             // Call WifiP2pManager.requestPeers() to get a list of current peers

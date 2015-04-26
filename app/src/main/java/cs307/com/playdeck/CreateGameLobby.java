@@ -3,6 +3,7 @@ package cs307.com.playdeck;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -42,7 +43,25 @@ public class CreateGameLobby extends ActionBarActivity {
 
         mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
         mChannel = mManager.initialize(this, getMainLooper(), null);
-        mReceiver = new GameBroadcastReceiver(mManager, mChannel, this);
+        WifiP2pManager.PeerListListener peerListListener = new WifiP2pManager.PeerListListener() {
+            @Override
+            public void onPeersAvailable(WifiP2pDeviceList peerList) {
+
+                // Out with the old, in with the new.
+                //peers.clear();
+               // peers.addAll(peerList.getDeviceList());
+
+                // If an AdapterView is backed by this data, notify it
+                // of the change.  For instance, if you have a ListView of available
+                // peers, trigger an update.
+                //adapter.notifyDataSetChanged();
+                //if (peers.size() == 0) {
+                    //Log.d(WiFiDirectActivity.TAG, "No devices found");
+                    return;
+               // }
+            }
+        };
+        mReceiver = new GameBroadcastReceiver(mManager, mChannel, this,peerListListener );
 
         mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
 

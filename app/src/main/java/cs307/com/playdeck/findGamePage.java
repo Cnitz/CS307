@@ -7,6 +7,7 @@ import android.net.wifi.p2p.WifiP2pManager.PeerListListener;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,12 +24,18 @@ public class findGamePage extends ActionBarActivity{
     WifiP2pManager.Channel mChannel;
     GameBroadcastReceiver mReceiver;
     IntentFilter mIntentFilter;
+    private List peers = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_game_page);
 
+
+        final ListView listview = (ListView) findViewById(R.id.listView2);
+        final ArrayAdapter adapter = new ArrayAdapter(this,
+                android.R.layout.simple_list_item_1, peers);
+        listview.setAdapter(adapter);
 
         mIntentFilter = new IntentFilter();
         mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
@@ -38,10 +45,29 @@ public class findGamePage extends ActionBarActivity{
 
         mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
         mChannel = mManager.initialize(this, getMainLooper(), null);
-        mReceiver = new GameBroadcastReceiver(mManager, mChannel, this);
+
+        PeerListListener peerListListener = new PeerListListener() {
+            @Override
+            public void onPeersAvailable(WifiP2pDeviceList peerList) {
+
+                // Out with the old, in with the new.
+                peers.clear();
+                peers.addAll(peerList.getDeviceList());
+
+                // If an AdapterView is backed by this data, notify it
+                // of the change.  For instance, if you have a ListView of available
+                // peers, trigger an update.
+                adapter.notifyDataSetChanged();
+                if (peers.size() == 0) {
+                    //Log.d(WiFiDirectActivity.TAG, "No devices found");
+                    return;
+                }
+            }
+        };
+
+        mReceiver = new GameBroadcastReceiver(mManager, mChannel, this, peerListListener);
 
         mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
-            ArrayAdapter<String> adapter;
             @Override
             public void onSuccess() {
                 // Code for when the discovery initiation is successful goes here.
@@ -56,7 +82,6 @@ public class findGamePage extends ActionBarActivity{
                 // Alert the user that something went wrong.
             }
         });
-
 
 
          }
