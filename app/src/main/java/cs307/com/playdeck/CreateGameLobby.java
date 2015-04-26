@@ -6,6 +6,7 @@ import android.content.IntentFilter;
 import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -61,10 +62,10 @@ public class CreateGameLobby extends ActionBarActivity {
                // }
             }
         };
+        Log.v("Playdeck", "Right before CGL GBR call\n");
         mReceiver = new GameBroadcastReceiver(mManager, mChannel, this,peerListListener );
 
         mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
-
             @Override
             public void onSuccess() {
                 // Code for when the discovery initiation is successful goes here.
@@ -79,7 +80,7 @@ public class CreateGameLobby extends ActionBarActivity {
                 // Alert the user that something went wrong.
             }
         });
-
+        Log.v("Playdeck","After CGL discover peers call\n");
 
     }
 

@@ -42,13 +42,14 @@ public class GameBroadcastReceiver extends BroadcastReceiver {
         if (WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION.equals(action)) {
             int state = intent.getIntExtra(WifiP2pManager.EXTRA_WIFI_STATE, -1);
             if (state == WifiP2pManager.WIFI_P2P_STATE_ENABLED) {
-                System.out.println("Wifi Enabled!");
+                Log.v("Playdeck","Wifi is enabled\n");
             } else {
                 // Wi-Fi P2P is not enabled
             }
         } else if (WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION.equals(action)) {
 
             if (mManager != null) {
+                Log.v("Playdeck","Request Peers called!\n");
                 mManager.requestPeers(mChannel, this.p);
             }
             //Log.d(WiFiDirectActivity.TAG, "P2P peers changed");

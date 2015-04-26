@@ -14,6 +14,7 @@ import android.view.View;
 import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +54,7 @@ public class findGamePage extends ActionBarActivity{
                 // Out with the old, in with the new.
                 peers.clear();
                 peers.addAll(peerList.getDeviceList());
-
+                Log.v("Playdeck","Find game peerListListener\n");
                 // If an AdapterView is backed by this data, notify it
                 // of the change.  For instance, if you have a ListView of available
                 // peers, trigger an update.
@@ -82,7 +83,7 @@ public class findGamePage extends ActionBarActivity{
                 // Alert the user that something went wrong.
             }
         });
-
+        Log.v("Playdeck","Reached the end of onCreate findGamePage\n");
 
          }
 
