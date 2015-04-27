@@ -27,7 +27,7 @@ public class findGamePage extends ActionBarActivity{
     WifiP2pManager.Channel mChannel;
     GameBroadcastReceiver mReceiver;
     IntentFilter mIntentFilter;
-    private List<WifiP2pDevice> peers;
+    private List<WifiP2pDevice> peers = new ArrayList<WifiP2pDevice>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +61,12 @@ public class findGamePage extends ActionBarActivity{
                 // of the change.  For instance, if you have a ListView of available
                 // peers, trigger an update.
                 adapter.notifyDataSetChanged();
-                if (peers.size() == 0) {
+              /*  if (peers.size() == 0) {
                     Log.v("WiFiDirectActivity.TAG", "No devices found");
                     return;
-                }
+                }*/
             }
         };
-        startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
        mReceiver = new GameBroadcastReceiver(mManager, mChannel, this, peerListListener);
 
         mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {

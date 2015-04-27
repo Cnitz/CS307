@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,7 +27,7 @@ public class CreateGameLobby extends ActionBarActivity {
     WifiP2pManager.Channel mChannel;
     GameBroadcastReceiver mReceiver;
     IntentFilter mIntentFilter;
-    private List<WifiP2pDevice> peers;
+    private List<WifiP2pDevice> peers = new ArrayList<WifiP2pDevice>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +67,10 @@ public class CreateGameLobby extends ActionBarActivity {
                 // of the change.  For instance, if you have a ListView of available
                 // peers, trigger an update.
                 adapter.notifyDataSetChanged();
-                if (peers.size() == 0) {
+              /*  if (peers.size() == 0) {
                     //Log.d(WiFiDirectActivity.TAG, "No devices found");
                     return;
-                }
+                }*/
             }
         };
         Log.v("Playdeck", "Right before CGL GBR call\n");
