@@ -35,11 +35,6 @@ public class findGamePage extends ActionBarActivity{
         setContentView(R.layout.activity_find_game_page);
 
 
-        final ListView listview = (ListView) findViewById(R.id.listView2);
-        final ArrayAdapter adapter = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1, peers);
-        listview.setAdapter(adapter);
-
         mIntentFilter = new IntentFilter();
         mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
         mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
@@ -49,25 +44,30 @@ public class findGamePage extends ActionBarActivity{
         mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
         mChannel = mManager.initialize(this, getMainLooper(), null);
 
-        PeerListListener peerListListener = new PeerListListener() {
+        final ListView listview = (ListView) findViewById(R.id.listView4);
+        final ArrayAdapter adapter = new ArrayAdapter(this,
+                android.R.layout.simple_list_item_1, peers);
+        listview.setAdapter(adapter);
+        WifiP2pManager.PeerListListener peerListListener = new WifiP2pManager.PeerListListener() {
             @Override
             public void onPeersAvailable(WifiP2pDeviceList peerList) {
 
                 // Out with the old, in with the new.
-                peers.clear();
+                //peers.clear();
                 peers.addAll(peerList.getDeviceList());
-                Log.v("Playdeck","Find game peerListListener\n");
+
                 // If an AdapterView is backed by this data, notify it
                 // of the change.  For instance, if you have a ListView of available
                 // peers, trigger an update.
                 adapter.notifyDataSetChanged();
               /*  if (peers.size() == 0) {
-                    Log.v("WiFiDirectActivity.TAG", "No devices found");
+                    //Log.d(WiFiDirectActivity.TAG, "No devices found");
                     return;
                 }*/
             }
         };
-       mReceiver = new GameBroadcastReceiver(mManager, mChannel, this, peerListListener);
+        //Log.v("Playdeck", "Right before CGL GBR call\n");
+        mReceiver = new GameBroadcastReceiver(mManager, mChannel, this,peerListListener );
 
         mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
             @Override
@@ -84,9 +84,7 @@ public class findGamePage extends ActionBarActivity{
                 // Alert the user that something went wrong.
             }
         });
-
-
-        Log.v("Playdeck","Reached the end of onCreate findGamePage\n");
+       // Log.v("Playdeck","After CGL discover peers call\n");
 
          }
 
@@ -120,6 +118,16 @@ public class findGamePage extends ActionBarActivity{
     public void joinGame(View view){
         Intent intent = new Intent(findGamePage.this, gamePage.class);
         startActivity(intent);
+    }
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(mReceiver, mIntentFilter);
+    }
+    /* unregister the broadcast receiver */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(mReceiver);
     }
 
 }
