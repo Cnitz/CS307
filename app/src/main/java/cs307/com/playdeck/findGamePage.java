@@ -44,7 +44,7 @@ public class findGamePage extends ActionBarActivity{
         mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
         mChannel = mManager.initialize(this, getMainLooper(), null);
 
-        final ListView listview = (ListView) findViewById(R.id.listView4);
+        final ListView listview = (ListView) findViewById(R.id.listView2);
         final ArrayAdapter adapter = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_1, peers);
         listview.setAdapter(adapter);
