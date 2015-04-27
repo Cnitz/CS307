@@ -3,8 +3,10 @@ package cs307.com.playdeck;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pManager.PeerListListener;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,7 +27,7 @@ public class findGamePage extends ActionBarActivity{
     WifiP2pManager.Channel mChannel;
     GameBroadcastReceiver mReceiver;
     IntentFilter mIntentFilter;
-    private List peers = new ArrayList();
+    private List<WifiP2pDevice> peers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,13 +62,13 @@ public class findGamePage extends ActionBarActivity{
                 // peers, trigger an update.
                 adapter.notifyDataSetChanged();
                 if (peers.size() == 0) {
-                    //Log.d(WiFiDirectActivity.TAG, "No devices found");
+                    Log.v("WiFiDirectActivity.TAG", "No devices found");
                     return;
                 }
             }
         };
-
-        mReceiver = new GameBroadcastReceiver(mManager, mChannel, this, peerListListener);
+        startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
+       mReceiver = new GameBroadcastReceiver(mManager, mChannel, this, peerListListener);
 
         mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
             @Override
@@ -83,6 +85,8 @@ public class findGamePage extends ActionBarActivity{
                 // Alert the user that something went wrong.
             }
         });
+
+
         Log.v("Playdeck","Reached the end of onCreate findGamePage\n");
 
          }

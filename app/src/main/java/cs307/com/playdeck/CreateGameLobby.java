@@ -3,6 +3,7 @@ package cs307.com.playdeck;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,9 +11,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
+
+import java.util.List;
 
 
 public class CreateGameLobby extends ActionBarActivity {
@@ -21,7 +26,7 @@ public class CreateGameLobby extends ActionBarActivity {
     WifiP2pManager.Channel mChannel;
     GameBroadcastReceiver mReceiver;
     IntentFilter mIntentFilter;
-
+    private List<WifiP2pDevice> peers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,22 +49,27 @@ public class CreateGameLobby extends ActionBarActivity {
 
         mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
         mChannel = mManager.initialize(this, getMainLooper(), null);
+
+        final ListView listview = (ListView) findViewById(R.id.listView4);
+        final ArrayAdapter adapter = new ArrayAdapter(this,
+                android.R.layout.simple_list_item_1, peers);
+        listview.setAdapter(adapter);
         WifiP2pManager.PeerListListener peerListListener = new WifiP2pManager.PeerListListener() {
             @Override
             public void onPeersAvailable(WifiP2pDeviceList peerList) {
 
                 // Out with the old, in with the new.
                 //peers.clear();
-               // peers.addAll(peerList.getDeviceList());
+               peers.addAll(peerList.getDeviceList());
 
                 // If an AdapterView is backed by this data, notify it
                 // of the change.  For instance, if you have a ListView of available
                 // peers, trigger an update.
-                //adapter.notifyDataSetChanged();
-                //if (peers.size() == 0) {
+                adapter.notifyDataSetChanged();
+                if (peers.size() == 0) {
                     //Log.d(WiFiDirectActivity.TAG, "No devices found");
                     return;
-               // }
+                }
             }
         };
         Log.v("Playdeck", "Right before CGL GBR call\n");
