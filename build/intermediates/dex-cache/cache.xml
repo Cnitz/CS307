@@ -2,18 +2,53 @@
 <items version="2" >
 
     <item
-        jar="D:\Alex\Dev\Git\CS307\CS307\app\libs\kryonet-2.21-all.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="d906a8f689f340b39a7f78bf9b4474aa819d7391">
-        <dex dex="D:\Alex\Dev\Git\CS307\CS307\app\build\intermediates\pre-dexed\debug\kryonet-2.21-all-979bb0d6943ab22c68addf7d77a8e3c064314ca6.jar" />
-    </item>
-    <item
-        jar="D:\Alex\Dev\Git\CS307\CS307\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\classes.jar"
+        jar="/Users/Cnitz/Documents/CS307/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
-        <dex dex="D:\Alex\Dev\Git\CS307\CS307\app\build\intermediates\pre-dexed\debug\classes-b9d695f373f5139109ab156e2b9cac833d861c27.jar" />
+        <dex dex="/Users/Cnitz/Documents/CS307/app/build/intermediates/pre-dexed/debug/classes-85f98b3746591320ffcf03961b2bdd00ef45a168.jar" />
+    </item>
+    <item
+        jar="/Applications/Android Studio.app/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/Cnitz/Documents/CS307/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-4a3451217818f3fa9e04c6957b8d3d12621a1ee0.jar" />
+    </item>
+    <item
+        jar="/Users/Cnitz/Documents/CS307/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
+        <dex dex="/Users/Cnitz/Documents/CS307/app/build/intermediates/pre-dexed/debug/classes-0f93f940b482773f008238f82acb0448da8b501b.jar" />
+    </item>
+    <item
+        jar="/Users/Cnitz/Documents/CS307/app/libs/kryonet-2.21-all.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d906a8f689f340b39a7f78bf9b4474aa819d7391">
+        <dex dex="/Users/Cnitz/Documents/CS307/app/build/intermediates/pre-dexed/debug/kryonet-2.21-all-9c1793ba8b9a2119c90b21de21b3b4ce4ca05e16.jar" />
+    </item>
+    <item
+        jar="/Users/Cnitz/Documents/CS307/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/Cnitz/Documents/CS307/app/build/intermediates/pre-dexed/debug/classes-9319ff6adadfb625227ab8c8cf886e361c11db7b.jar" />
+    </item>
+    <item
+        jar="/Users/Cnitz/Documents/CS307/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/Cnitz/Documents/CS307/app/build/intermediates/pre-dexed/debug/classes-3a9805de0c606f8bcdc078e26770407b7d2ecff6.jar" />
+    </item>
+    <item
+        jar="/Users/Cnitz/Documents/CS307/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/Cnitz/Documents/CS307/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-6166ce1451b8b5873ee54a7f1764716b2f5e0f15.jar" />
     </item>
 
 </items>
