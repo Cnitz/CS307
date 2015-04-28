@@ -1,5 +1,6 @@
 package cs307.com.playdeck;
 
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -45,6 +46,9 @@ public class CreateGameLobby extends ActionBarActivity {
         textView.setText(game_name);
         Intent i = getIntent();
         int b = i.getIntExtra("isHost",0);
+        BluetoothAdapter myDevice = BluetoothAdapter.getDefaultAdapter();
+        String deviceName = myDevice.getName();
+        wrappers.add(new DeviceWrapper(null,deviceName));
         if(b < 0){
             String hostName = i.getStringExtra("HostName");
             DeviceWrapper thing = new DeviceWrapper(null,hostName);
@@ -88,13 +92,16 @@ public class CreateGameLobby extends ActionBarActivity {
                     peers.clear();
                     peers.addAll(peerList.getDeviceList());
                     wrappers.clear();
+                    BluetoothAdapter myDevice = BluetoothAdapter.getDefaultAdapter();
+                    String deviceName = myDevice.getName();
+                    wrappers.add(new DeviceWrapper(null,deviceName));
                     for(WifiP2pDevice dev : peers){
                         wrappers.add(new DeviceWrapper(dev,dev.deviceName));
-
                     }
                     // If an AdapterView is backed by this data, notify it
                     // of the change.  For instance, if you have a ListView of available
                     // peers, trigger an update.
+
                     adapter.notifyDataSetChanged();
               /*  if (peers.size() == 0) {
                     //Log.d(WiFiDirectActivity.TAG, "No devices found");

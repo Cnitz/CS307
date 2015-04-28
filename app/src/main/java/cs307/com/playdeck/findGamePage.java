@@ -101,7 +101,7 @@ public class findGamePage extends ActionBarActivity{
                 Intent intent = new Intent(findGamePage.this, CreateGameLobby.class);
                 intent.putExtra("isHost", -1);
                 intent.putExtra("HostName",wrappers.get(position).name);
-
+                startActivity(intent);
             }
         });
 
