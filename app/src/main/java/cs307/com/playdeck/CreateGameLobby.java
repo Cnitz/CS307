@@ -46,7 +46,8 @@ public class CreateGameLobby extends ActionBarActivity {
         Intent i = getIntent();
         int b = i.getIntExtra("isHost",0);
         if(b < 0){
-            DeviceWrapper hostDeviceWrapper =(DeviceWrapper) i.getSerializableExtra("HostData");
+            Bundle bundle = i.getBundleExtra("HostBundle");
+            DeviceWrapper hostDeviceWrapper = (DeviceWrapper) bundle.getSerializable("HostData");
             WifiP2pDevice host = hostDeviceWrapper.device;
 
             mIntentFilter = new IntentFilter();

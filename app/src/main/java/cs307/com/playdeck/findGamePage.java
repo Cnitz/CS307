@@ -99,8 +99,10 @@ public class findGamePage extends ActionBarActivity{
             public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
 
                 Intent intent = new Intent(findGamePage.this, CreateGameLobby.class);
+                Bundle b = new Bundle();
+                b.putSerializable("HostData",wrappers.get(position));
                 intent.putExtra("isHost", -1);
-                intent.putExtra("HostData",wrappers.get(position));
+                intent.putExtra("HostBundle",b);
                 startActivity(intent);
 
             }
