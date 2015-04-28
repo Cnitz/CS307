@@ -46,9 +46,8 @@ public class CreateGameLobby extends ActionBarActivity {
         Intent i = getIntent();
         int b = i.getIntExtra("isHost",0);
         if(b < 0){
-            Bundle bundle = i.getBundleExtra("HostBundle");
-            DeviceWrapper hostDeviceWrapper = (DeviceWrapper) bundle.getSerializable("HostData");
-            WifiP2pDevice host = hostDeviceWrapper.device;
+            String hostName = i.getStringExtra("HostName");
+            DeviceWrapper thing = new DeviceWrapper(null,hostName);
 
             mIntentFilter = new IntentFilter();
             mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
@@ -63,7 +62,8 @@ public class CreateGameLobby extends ActionBarActivity {
             final ArrayAdapter adapter = new ArrayAdapter(this,
                     android.R.layout.simple_list_item_1, wrappers);
             listview.setAdapter(adapter);
-            wrappers.add(hostDeviceWrapper);
+           wrappers.add(thing);
+            adapter.notifyDataSetChanged();
         }
         else {
 
