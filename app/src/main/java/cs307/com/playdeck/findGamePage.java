@@ -14,10 +14,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.net.wifi.p2p.WifiP2pDeviceList;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.util.Log;
+import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +31,7 @@ public class findGamePage extends ActionBarActivity{
     GameBroadcastReceiver mReceiver;
     IntentFilter mIntentFilter;
     private List<WifiP2pDevice> peers = new ArrayList<WifiP2pDevice>();
+    private List<DeviceWrapper> wrappers = new ArrayList<DeviceWrapper>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,16 +50,20 @@ public class findGamePage extends ActionBarActivity{
 
         final ListView listview = (ListView) findViewById(R.id.listView2);
         final ArrayAdapter adapter = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1, peers);
+                android.R.layout.simple_list_item_1, wrappers);
         listview.setAdapter(adapter);
         WifiP2pManager.PeerListListener peerListListener = new WifiP2pManager.PeerListListener() {
             @Override
             public void onPeersAvailable(WifiP2pDeviceList peerList) {
 
                 // Out with the old, in with the new.
-                //peers.clear();
+                peers.clear();
                 peers.addAll(peerList.getDeviceList());
+                wrappers.clear();
+                for(WifiP2pDevice dev : peers){
+                    wrappers.add(new DeviceWrapper(dev,dev.deviceName));
 
+                }
                 // If an AdapterView is backed by this data, notify it
                 // of the change.  For instance, if you have a ListView of available
                 // peers, trigger an update.
@@ -85,6 +93,18 @@ public class findGamePage extends ActionBarActivity{
             }
         });
        // Log.v("Playdeck","After CGL discover peers call\n");
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
+
+                Intent intent = new Intent(findGamePage.this, CreateGameLobby.class);
+                intent.putExtra("isHost", -1);
+                intent.putExtra("HostData",wrappers.get(position));
+                startActivity(intent);
+
+            }
+        });
 
          }
 

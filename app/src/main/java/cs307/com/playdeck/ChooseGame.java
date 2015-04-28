@@ -32,6 +32,7 @@ public class ChooseGame extends ActionBarActivity {
                 String gameName = ((TextView)view).getText().toString();
                 Intent intent = new Intent(ChooseGame.this, CreateGameLobby.class);
                 intent.putExtra("game_name", gameName);
+                intent.putExtra("isHost",1);
                 startActivity(intent);
 
             }
