@@ -55,6 +55,7 @@ public class CreateGameLobby extends ActionBarActivity {
 
     public void startGame(View view){
         Intent intent = new Intent(CreateGameLobby.this, gamePage.class);
+        intent.putExtra("game_name", ((TextView)findViewById(R.id.game_name)).getText().toString());
         startActivity(intent);
         /*     TODO   Use to send game name to start game, and then get the rules from the game name
         TextView textView = new TextView(this);

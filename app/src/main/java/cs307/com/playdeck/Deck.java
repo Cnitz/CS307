@@ -1,5 +1,7 @@
 package cs307.com.playdeck;
 
+import android.util.Log;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -27,9 +29,87 @@ public class Deck {
 		removed = new ArrayList<Card>();
 	}
 
+    public Deck()
+    {
+        this.cards = createMainDeck();
+        removed = new ArrayList<Card>();
+    }
+
     public Deck(ArrayList<Card> cards) {
         this.cards = cards;
         removed = new ArrayList<Card>();
+    }
+    public ArrayList<Card> createMainDeck(){
+        ArrayList<Card> result = new ArrayList<>();
+        int i = 0;
+        while ( i < 4){
+            String suit = "";
+            switch(i){
+                case 0:
+                    suit = "Spades";
+                    break;
+                case 1:
+                    suit = "Clubs";
+                    break;
+                case 2:
+                    suit = "Hearts";
+                    break;
+                case 3:
+                    suit = "Diamonds";
+                    break;
+            }
+            int j = 0;
+            while (j < 13){
+                String value = "";
+                switch (j) {
+                    case 0:
+                        value = "Ace";
+                        break;
+                    case 1:
+                        value = "2";
+                        break;
+                    case 2:
+                        value = "3";
+                        break;
+                    case 3:
+                        value = "4";
+                        break;
+                    case 4:
+                        value = "5";
+                        break;
+                    case 5:
+                        value = "6";
+                        break;
+                    case 6:
+                        value = "7";
+                        break;
+                    case 7:
+                        value = "8";
+                        break;
+                    case 8:
+                        value = "9";
+                        break;
+                    case 9:
+                        value = "10";
+                        break;
+                    case 10:
+                        value = "Jack";
+                        break;
+                    case 11:
+                        value = "Queen";
+                        break;
+                    case 12:
+                        value = "King";
+                        break;
+                }
+                Card tempCard = new Card(value, suit);
+                result.add(tempCard);
+                Log.w("testing", "Added " + suit + " " + value);
+                j++;
+            }
+            i++;
+        }
+        return result;
     }
 	
 	//TODO: devise a system for when someone draws a card from a deck that has no cards in it.

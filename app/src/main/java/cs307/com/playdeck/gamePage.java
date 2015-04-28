@@ -9,6 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
 
 import java.util.ArrayList;
 
@@ -20,14 +23,52 @@ public class gamePage extends ActionBarActivity {
     Deck mainDeck;
     ArrayList<Card> hand;
     ArrayList<Card> played;
+    ImageButton deckbutton;
+
+    String game_name;
+    Rules rules;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mainDeck = new Deck();
+        //rules = Rules.getRules(gamePage.this, game_name);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         PACKAGE_NAME = getApplicationContext().getPackageName();
         setContentView(R.layout.activity_game_page);
         boolean isHost = getIntent().getBooleanExtra("isHost",false);
+        deckbutton = (ImageButton)findViewById(R.id.game_deck);
+        //Deck Button Context Menu
+        deckbutton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                //Creating the instance of PopupMenu
+                PopupMenu popupMenu = new PopupMenu(gamePage.this, deckbutton);
+                //Inflating the Popup using xml file
+                popupMenu.getMenuInflater().inflate(R.menu.menu_deck, popupMenu.getMenu());
+                //registering popup with OnMenuItemClickListener
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.shuffle)
+                        {
+                            mainDeck.shuffle();
+                        }
+                        if (item.getItemId() == R.id.deal)
+                        {
+                            if (hand.size() < 10)
+                            {
+                                hand.add(mainDeck.draw());
+                            }
+                        }
+                        return true;
+                    }
+                });
+                popupMenu.show();//showing popup menu
+            }
+        });
+
+
         if(isHost){
             GClient = new GameClient(true);
             try {
