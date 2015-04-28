@@ -31,6 +31,8 @@ public class gamePage extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mainDeck = new Deck();
+        hand = new ArrayList<Card>();
+        played = new ArrayList<Card>();
         //rules = Rules.getRules(gamePage.this, game_name);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
@@ -56,7 +58,7 @@ public class gamePage extends ActionBarActivity {
                         }
                         if (item.getItemId() == R.id.deal)
                         {
-                            if (hand.size() < 10)
+                            if (hand.size() < 20)
                             {
                                 hand.add(mainDeck.draw());
                             }
@@ -96,7 +98,7 @@ public class gamePage extends ActionBarActivity {
 
 
 
-        CardAdapter ca = new CardAdapter(cards);
+        CardAdapter ca = new CardAdapter(hand);
         recList.setAdapter(ca);
 
         // TODO  these are the cards at the top left
@@ -105,7 +107,7 @@ public class gamePage extends ActionBarActivity {
         LinearLayoutManager llm2 = new LinearLayoutManager(this);
         llm2.setOrientation(LinearLayoutManager.HORIZONTAL);
         recList2.setLayoutManager(llm2);
-        CardAdapter ca2 = new CardAdapter(cards);
+        CardAdapter ca2 = new CardAdapter(played);
         recList2.setAdapter(ca2);
 
 

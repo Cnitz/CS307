@@ -30,18 +30,18 @@
         <dex dex="C:\Users\Alex\Documents\GitHub\CS307\app\build\intermediates\pre-dexed\debug\classes-9a9a49729c0a061f3c2dec7bbdade35fa9905d13.jar" />
     </item>
     <item
-        jar="C:\Users\Alex\Documents\GitHub\CS307\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\Alex\Documents\GitHub\CS307\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-6d009db3b084b579ad34c9ddea8a654852d0b07a.jar" />
-    </item>
-    <item
         jar="C:\Users\Alex\Documents\GitHub\CS307\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\21.0.3\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
         <dex dex="C:\Users\Alex\Documents\GitHub\CS307\app\build\intermediates\pre-dexed\debug\classes-1fc8ec87f8e2c68f431dd849bd792740d04ceadd.jar" />
+    </item>
+    <item
+        jar="C:\Users\Alex\Documents\GitHub\CS307\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="C:\Users\Alex\Documents\GitHub\CS307\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-6d009db3b084b579ad34c9ddea8a654852d0b07a.jar" />
     </item>
     <item
         jar="C:\Users\Alex\Documents\GitHub\CS307\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\classes.jar"
