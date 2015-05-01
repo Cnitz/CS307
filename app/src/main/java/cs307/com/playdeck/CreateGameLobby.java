@@ -6,19 +6,25 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pDeviceList;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,9 +52,6 @@ public class CreateGameLobby extends ActionBarActivity {
         textView.setText(game_name);
         Intent i = getIntent();
         int b = i.getIntExtra("isHost",0);
-        BluetoothAdapter myDevice = BluetoothAdapter.getDefaultAdapter();
-        String deviceName = myDevice.getName();
-        wrappers.add(new DeviceWrapper(null,deviceName));
         if(b < 0){
             String hostName = i.getStringExtra("HostName");
             DeviceWrapper thing = new DeviceWrapper(null,hostName);
@@ -89,12 +92,9 @@ public class CreateGameLobby extends ActionBarActivity {
                 public void onPeersAvailable(WifiP2pDeviceList peerList) {
 
                     // Out with the old, in with the new.
-                    peers.clear();
+                   /* peers.clear();
                     peers.addAll(peerList.getDeviceList());
                     wrappers.clear();
-                    BluetoothAdapter myDevice = BluetoothAdapter.getDefaultAdapter();
-                    String deviceName = myDevice.getName();
-                    wrappers.add(new DeviceWrapper(null,deviceName));
                     for(WifiP2pDevice dev : peers){
                         wrappers.add(new DeviceWrapper(dev,dev.deviceName));
                     }
@@ -128,6 +128,19 @@ public class CreateGameLobby extends ActionBarActivity {
                 }
             });
             Log.v("Playdeck", "After CGL discover peers call\n");
+            try {
+                ServerSocket servSocket = new ServerSocket(3457);
+                Socket socket = servSocket.accept();
+
+                //If this code is reached, it means we have gotten a message
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                String message = br.readLine();
+                wrappers.add(new DeviceWrapper(null,message));
+                adapter.notifyDataSetChanged();
+            }
+            catch(Exception e){
+            }
 
         }
     }

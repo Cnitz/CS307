@@ -20,7 +20,10 @@ import android.widget.ListView;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
 import java.io.Serializable;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,11 +100,18 @@ public class findGamePage extends ActionBarActivity{
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
+                try {
+                    Socket socket = new Socket(wrappers.get(position).device.deviceAddress, 3457);
+                    BufferedWriter bufOut = new BufferedWriter( new OutputStreamWriter(socket.getOutputStream()));
+                    bufOut.write("Found device");
+                    Intent intent = new Intent(findGamePage.this, CreateGameLobby.class);
+                    intent.putExtra("isHost", -1);
+                    intent.putExtra("HostName", wrappers.get(position).name);
+                    startActivity(intent);
+                }
+                catch(Exception e){
 
-                Intent intent = new Intent(findGamePage.this, CreateGameLobby.class);
-                intent.putExtra("isHost", -1);
-                intent.putExtra("HostName",wrappers.get(position).name);
-                startActivity(intent);
+                }
             }
         });
 
