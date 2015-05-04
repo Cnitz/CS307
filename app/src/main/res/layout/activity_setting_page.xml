@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="cs307.com.playdeck.settingPage"
+    android:background="@drawable/ideaformainscreen">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/userNameField"
+        android:layout_alignParentTop="true" />
+
+    <ImageView
+        android:layout_width="245dp"
+        android:layout_height="410dp"
+        android:scaleType="centerCrop"
+        android:id="@+id/cardViewer"
+        android:src="@drawable/card1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Back of Card"
+        android:id="@+id/backChangeButton"
+        android:onClick="changeCard"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/cardViewer"
+        android:layout_toStartOf="@+id/cardViewer" />
+
+</RelativeLayout>

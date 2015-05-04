@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 
 
@@ -13,6 +14,7 @@ public class CreateGameLobby extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_game_lobby);
         Bundle extras = getIntent().getExtras();
@@ -55,7 +57,6 @@ public class CreateGameLobby extends ActionBarActivity {
 
     public void startGame(View view){
         Intent intent = new Intent(CreateGameLobby.this, gamePage.class);
-        intent.putExtra("game_name", ((TextView)findViewById(R.id.game_name)).getText().toString());
         startActivity(intent);
         /*     TODO   Use to send game name to start game, and then get the rules from the game name
         TextView textView = new TextView(this);

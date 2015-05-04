@@ -10,5 +10,6 @@
     <string name="title_activity_choose_game">ChooseGame</string>
     <string name="title_activity_create_game">CreateGame</string>
     <string name="title_activity_create_game_lobby">CreateGameLobby</string>
+    <string name="title_activity_setting_page">settingPage</string>
 
 </resources>

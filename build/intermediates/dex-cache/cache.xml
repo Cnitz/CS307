@@ -2,53 +2,46 @@
 <items version="2" >
 
     <item
-        jar="D:\Alex\Dev\Git\CS307\CS307\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="D:\Alex\Dev\Git\CS307\CS307\app\build\intermediates\pre-dexed\debug\classes-015b096e28f79e936720376bac6eb600b6fb2cdc.jar" />
-    </item>
-    <item
-        jar="D:\Alex\Dev\Git\CS307\CS307\app\libs\kryonet-2.21-all.jar"
+        jar="H:\Downloads\Internet\CS307-master (3)\CS307-master\app\libs\kryonet-2.21-all.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="d906a8f689f340b39a7f78bf9b4474aa819d7391">
-        <dex dex="D:\Alex\Dev\Git\CS307\CS307\app\build\intermediates\pre-dexed\debug\kryonet-2.21-all-979bb0d6943ab22c68addf7d77a8e3c064314ca6.jar" />
+        <dex dex="H:\Downloads\Internet\CS307-master (3)\CS307-master\app\build\intermediates\pre-dexed\debug\kryonet-2.21-all-92e3548b59e27b0592275b31615b31987629d4d1.jar" />
     </item>
     <item
-        jar="D:\Alex\Dev\Git\CS307\CS307\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
-        <dex dex="D:\Alex\Dev\Git\CS307\CS307\app\build\intermediates\pre-dexed\debug\classes-b9d695f373f5139109ab156e2b9cac833d861c27.jar" />
-    </item>
-    <item
-        jar="D:\Alex\Dev\Git\CS307\CS307\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jar="H:\Downloads\Internet\CS307-master (3)\CS307-master\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="D:\Alex\Dev\Git\CS307\CS307\app\build\intermediates\pre-dexed\debug\classes-bb42ca92f932f136cb1ad90906462b094580b1a8.jar" />
+        <dex dex="H:\Downloads\Internet\CS307-master (3)\CS307-master\app\build\intermediates\pre-dexed\debug\classes-42ee612c47a0730b44ec7e0743131c30104c9c22.jar" />
     </item>
     <item
-        jar="D:\Alex\Documents\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="D:\Alex\Dev\Git\CS307\CS307\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-18dbe46ea9643c1d07c708663fa1fe8c0c2af972.jar" />
-    </item>
-    <item
-        jar="D:\Alex\Dev\Git\CS307\CS307\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jar="H:\Downloads\Internet\CS307-master (3)\CS307-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="D:\Alex\Dev\Git\CS307\CS307\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-def1d2219e054bf62ede24b101ea7894494e7d51.jar" />
+        <dex dex="H:\Downloads\Internet\CS307-master (3)\CS307-master\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-cb8bd2a75417e0e3193f9d679c36baf9cc31553f.jar" />
     </item>
     <item
-        jar="D:\Alex\Dev\Git\CS307\CS307\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\21.0.3\classes.jar"
+        jar="C:\Users\Kyle.HP\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
-        <dex dex="D:\Alex\Dev\Git\CS307\CS307\app\build\intermediates\pre-dexed\debug\classes-e493ea73e902c758ee35a64e48ab377877cf8c21.jar" />
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="H:\Downloads\Internet\CS307-master (3)\CS307-master\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-38de0e31afb7627000f6d716a29b6c4de1247fc3.jar" />
+    </item>
+    <item
+        jar="H:\Downloads\Internet\CS307-master (3)\CS307-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="H:\Downloads\Internet\CS307-master (3)\CS307-master\app\build\intermediates\pre-dexed\debug\classes-7333d715ee15cb4cae0b80a377cfff8b8cb1bf4e.jar" />
+    </item>
+    <item
+        jar="H:\Downloads\Internet\CS307-master (3)\CS307-master\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
+        <dex dex="H:\Downloads\Internet\CS307-master (3)\CS307-master\app\build\intermediates\pre-dexed\debug\classes-7daebd1ad710b9da0e828b19598e8943870405cb.jar" />
     </item>
 
 </items>

@@ -89,6 +89,11 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(MainActivity.this, findGamePage.class);
         startActivity(intent);
     }
+    public void openSettings(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, settingPage.class);
+        startActivity(intent);
+    }
     public void openGamePage(View view)
     {
         Intent intent = new Intent(MainActivity.this, ChooseGame.class);
