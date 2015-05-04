@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 
@@ -24,12 +25,17 @@ public class gamePage extends ActionBarActivity {
     ArrayList<Card> hand;
     ArrayList<Card> played;
     ImageButton deckbutton;
+    ImageButton chipbutton;
 
     String game_name;
     Rules rules;
+    CardAdapter ca;
+
+    int pot;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         mainDeck = new Deck();
         hand = new ArrayList<Card>();
         played = new ArrayList<Card>();
@@ -39,38 +45,6 @@ public class gamePage extends ActionBarActivity {
         PACKAGE_NAME = getApplicationContext().getPackageName();
         setContentView(R.layout.activity_game_page);
         boolean isHost = getIntent().getBooleanExtra("isHost",false);
-        deckbutton = (ImageButton)findViewById(R.id.game_deck);
-        //Deck Button Context Menu
-        deckbutton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                //Creating the instance of PopupMenu
-                PopupMenu popupMenu = new PopupMenu(gamePage.this, deckbutton);
-                //Inflating the Popup using xml file
-                popupMenu.getMenuInflater().inflate(R.menu.menu_deck, popupMenu.getMenu());
-                //registering popup with OnMenuItemClickListener
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        if (item.getItemId() == R.id.shuffle)
-                        {
-                            mainDeck.shuffle();
-                        }
-                        if (item.getItemId() == R.id.deal)
-                        {
-                            if (hand.size() < 20)
-                            {
-                                hand.add(mainDeck.draw());
-                            }
-                        }
-                        return true;
-                    }
-                });
-                popupMenu.show();//showing popup menu
-            }
-        });
-
-
         if(isHost){
             GClient = new GameClient(true);
             try {
@@ -98,7 +72,7 @@ public class gamePage extends ActionBarActivity {
 
 
 
-        CardAdapter ca = new CardAdapter(hand);
+        ca = new CardAdapter(hand);
         recList.setAdapter(ca);
 
         // TODO  these are the cards at the top left
@@ -111,7 +85,93 @@ public class gamePage extends ActionBarActivity {
         recList2.setAdapter(ca2);
 
 
+        deckbutton = (ImageButton)findViewById(R.id.game_deck);
+        //Deck Button Context Menu
+        deckbutton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                //Creating the instance of PopupMenu
+                PopupMenu popupMenu = new PopupMenu(gamePage.this, deckbutton);
+                //Inflating the Popup using xml file
+                popupMenu.getMenuInflater().inflate(R.menu.menu_deck, popupMenu.getMenu());
+                //registering popup with OnMenuItemClickListener
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.shuffle)
+                        {
+                            mainDeck.shuffle();
+                        }
+                        if (item.getItemId() == R.id.deal)
+                        {
+                            ca.addCard(mainDeck.draw());
+                        }
+                        return true;
+                    }
+                });
+                popupMenu.show();//showing popup menu
+            }
+        });
 
+        chipbutton = (ImageButton)findViewById(R.id.game_chips);
+        //Chip Button Context Menu
+        chipbutton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                PopupMenu popupMenu = new PopupMenu(gamePage.this, chipbutton);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_chips, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()
+                {
+                    public boolean onMenuItemClick(MenuItem item)
+                    {
+                        //Expand Bet Menu
+                        if (item.getItemId() == R.id.addchip)
+                        {
+                            PopupMenu addMenu = new PopupMenu(gamePage.this, (ImageButton) findViewById(R.id.addchip));
+                            addMenu.getMenuInflater().inflate(R.menu.menu_chips_bet, addMenu.getMenu());
+                            addMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()
+                            {
+                                public boolean onMenuItemClick(MenuItem item)
+                                {
+                                    if (item.getItemId() == R.id.bet_confirm)
+                                    {
+                                        EditText bamount = (EditText) findViewById(R.id.bet_amount);
+                                        pot += Integer.parseInt(bamount.getText().toString());
+                                    }
+                                    return true;
+                                }
+                            });
+                            addMenu.show();//showing popup menu
+                        }
+                        //End Bet Menu
+
+                        //Expand Withdraw Menu
+                        if (item.getItemId() == R.id.takechip)
+                        {
+                            PopupMenu addMenu = new PopupMenu(gamePage.this, (ImageButton) findViewById(R.id.addchip));
+                            addMenu.getMenuInflater().inflate(R.menu.menu_chips_bet, addMenu.getMenu());
+                            addMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()
+                            {
+                                public boolean onMenuItemClick(MenuItem item)
+                                {
+                                    if (item.getItemId() == R.id.bet_confirm)
+                                    {
+                                        EditText bamount = (EditText) findViewById(R.id.bet_amount);
+                                        pot -= Integer.parseInt(bamount.getText().toString());
+                                    }
+                                    return true;
+                                }
+                            });
+                            addMenu.show();//showing popup menu
+                        }
+                        return true;
+                    }
+                });
+                popupMenu.show();//showing popup menu
+            }
+        });
     }
 
 

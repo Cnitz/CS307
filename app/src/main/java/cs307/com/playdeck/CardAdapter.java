@@ -72,7 +72,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     }
 
 
-
+    public void addCard(Card c)
+    {
+        cards.add(c);
+    }
 
 
 
